@@ -6,13 +6,9 @@ int
 main(void)
 {
   int pid;
-
-  // Initialize semaphores
   sem_init(0, 1);
   sem_init(1, 0);
   sem_init(2, 0);
-
-  // First child prints A
   pid = fork();
 
   if(pid == 0){
@@ -24,10 +20,7 @@ main(void)
     }
     exit();
   }
-
-  // Second child prints B
   pid = fork();
-
   if(pid == 0){
     int i;
     for(i = 0; i < 5; i++){
@@ -37,8 +30,6 @@ main(void)
     }
     exit();
   }
-
-  // Third child prints C
   pid = fork();
 
   if(pid == 0){
@@ -50,8 +41,6 @@ main(void)
     }
     exit();
   }
-
-  // Parent waits for all children
   wait();
   wait();
   wait();
